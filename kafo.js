@@ -3,6 +3,23 @@ var esperantistojEle = document.getElementById("esperantistoj");
 var mono = 0;
 var monoEle = document.getElementById("mono");
 
+function doniKuketon(nomo, nombro) {
+	let kuketo = nomo + "=" + nombro + ";max-age=" + 60 * 60 * 24 * 365;
+	document.cookie = kuketo;
+}
+
+function akiriKuketon(nomo) {
+	let nombro = "";
+	let kuketoj = document.cookie.split(";");
+	for (kuketo of kuketoj) {
+		kuketo = kuketo.split("=");
+		if (kuketo[0] == nomo) {
+			return(parseInt(kuketo[1]));
+		}
+	}
+	return("");
+}
+
 function varbi(n) {
 	esperantistoj += n;
 	esperantistojEle.innerHTML = komigiNombron(esperantistoj);

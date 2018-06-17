@@ -18,3 +18,5 @@ console.log(malrapida(100, 5, 15000, 86400));
 console.log(rapida(100, 5, 15000, 86400));
 console.log(malrapida(100, 5, 15000, 86401));
 console.log(rapida(100, 5, 15000, 86401));
+console.log(rapida(10, 0, 100, 5));
+console.log(rapida(10, 0, 100, 6));
