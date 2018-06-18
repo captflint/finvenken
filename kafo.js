@@ -43,11 +43,6 @@ function memori() {
 	tempo = akiriKuketon("tempo");
 }
 
-function varbi(n) {
-	e7istaTuto += n;
-	esperantistojEle.innerHTML = komigiNombron(e7istaTuto);
-}
-
 function komigiNombron(n) {
 	n = "" + n;
 	let s = "";
@@ -107,10 +102,26 @@ function spesojAlSpesmiloj(m) {
 	}
 }
 
-function ĝisdatigiNombrojn() {
-	mono += e7istaTuto;
+function kalkuli() {
+	let t = akiriTempon() - tempo;
+	let e7istaNovaTuto = e7istaTuto + e7istaKresko * t;
+	let paro = e7istaTuto + e7istaKresko + e7istaNovaTuto;
+	let novaMono = mono + paro * (t / 2);
+	return([e7istaNovaTuto, novaMono]);
+}
+
+function varbi(n) {
+	nombroj = kalkuli();
+	e7istaTuto = nombroj[0] + 1;
+	mono = nombroj[1];
+	tempo = akiriTempon()
 	esperantistojEle.innerHTML = komigiNombron(e7istaTuto);
-	monoEle.innerHTML = spesojAlSpesmiloj(mono);
+}
+
+function ĝisdatigiNombrojn() {
+	let nombroj = kalkuli();
+	esperantistojEle.innerHTML = komigiNombron(nombroj[0]);
+	monoEle.innerHTML = spesojAlSpesmiloj(nombroj[1]);
 }
 
 if (akiriKuketon("e7istaTuto") === "") {
