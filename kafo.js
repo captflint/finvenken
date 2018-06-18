@@ -1,7 +1,16 @@
-var esperantistoj = 0;
+var e7istaTuto = 0;
 var esperantistojEle = document.getElementById("esperantistoj");
+var e7istaKresko = 0;
 var mono = 0;
 var monoEle = document.getElementById("mono");
+var tempo = 0;
+
+function akiriTempon() {
+	let t = Date.now();
+	t /= 1000;
+	t = Math.trunc(t);
+	return(t);
+}
 
 function doniKuketon(nomo, nombro) {
 	let kuketo = nomo + "=" + nombro + ";max-age=" + 60 * 60 * 24 * 365;
@@ -10,8 +19,8 @@ function doniKuketon(nomo, nombro) {
 
 function akiriKuketon(nomo) {
 	let nombro = "";
-	let kuketoj = document.cookie.split(";");
-	for (kuketo of kuketoj) {
+	let kuketoj = document.cookie.split("; ");
+	for (let kuketo of kuketoj) {
 		kuketo = kuketo.split("=");
 		if (kuketo[0] == nomo) {
 			return(parseInt(kuketo[1]));
@@ -20,9 +29,23 @@ function akiriKuketon(nomo) {
 	return("");
 }
 
+function konservi() {
+	doniKuketon("e7istaTuto", e7istaTuto);
+	doniKuketon("e7istaKresko", e7istaKresko);
+	doniKuketon("mono", mono);
+	doniKuketon("tempo", tempo);
+}
+
+function memori() {
+	e7istaTuto = akiriKuketon("e7istaTuto");
+	e7istaKresko = akiriKuketon("e7istaKresko");
+	mono = akiriKuketon("mono");
+	tempo = akiriKuketon("tempo");
+}
+
 function varbi(n) {
-	esperantistoj += n;
-	esperantistojEle.innerHTML = komigiNombron(esperantistoj);
+	e7istaTuto += n;
+	esperantistojEle.innerHTML = komigiNombron(e7istaTuto);
 }
 
 function komigiNombron(n) {
@@ -85,9 +108,17 @@ function spesojAlSpesmiloj(m) {
 }
 
 function ĝisdatigiNombrojn() {
-	mono += esperantistoj;
-	esperantistojEle.innerHTML = komigiNombron(esperantistoj);
+	mono += e7istaTuto;
+	esperantistojEle.innerHTML = komigiNombron(e7istaTuto);
 	monoEle.innerHTML = spesojAlSpesmiloj(mono);
+}
+
+if (akiriKuketon("e7istaTuto") === "") {
+	tempo = akiriTempon();
+	konservi();
+}
+else {
+	memori();
 }
 
 var ĝisdatigiSekunde = setInterval(ĝisdatigiNombrojn, 1000);
@@ -95,5 +126,5 @@ var ĝisdatigiSekunde = setInterval(ĝisdatigiNombrojn, 1000);
 var flagoEle = document.getElementById("flago");
 flagoEle.setAttribute("onclick", "varbi(1);");
 
-esperantistojEle.innerHTML = komigiNombron(esperantistoj);
+esperantistojEle.innerHTML = komigiNombron(e7istaTuto);
 monoEle.innerHTML = spesojAlSpesmiloj(mono);
