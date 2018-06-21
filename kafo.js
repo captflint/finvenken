@@ -72,10 +72,10 @@ function spesojAlSpesmiloj(m) {
 		return("nul");
 	}
 	else if (m.length == 1) {
-		return('0.00<span class="spesoj">' + m + "</span>");
+		return('0.<span class="spesoj">00' + m + "</span>");
 	}
 	else if (m.length == 2) {
-		return('0.0<span class="spesoj">' + m + "</span>");
+		return('0.<span class="spesoj">0' + m + "</span>");
 	}
 	else if (m.length == 3) {
 		return('0.<span class="spesoj">' + m + "</span>");
