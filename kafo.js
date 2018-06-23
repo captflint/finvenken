@@ -118,10 +118,22 @@ function varbi(n) {
 	esperantistojEle.innerHTML = komigiNombron(e7istaTuto);
 }
 
-function ĝisdatigiNombrojn() {
+function ĝisdatigiEkranon() {
 	let nombroj = kalkuli();
 	esperantistojEle.innerHTML = komigiNombron(nombroj[0]);
 	monoEle.innerHTML = spesojAlSpesmiloj(nombroj[1]);
+}
+
+function ĝisdatigiNombrojn() {
+	let nombroj = kalkuli();
+	tempo = akiriTempon();
+	e7istaTuto = nombroj[0];
+	mono = nombroj[1]
+}
+
+function grandigiKreskon(n) {
+	ĝisdatigiNombrojn();
+	e7istaKresko += n;
 }
 
 if (akiriKuketon("e7istaTuto") === "") {
@@ -132,7 +144,7 @@ else {
 	memori();
 }
 
-var ĝisdatigiSekunde = setInterval(ĝisdatigiNombrojn, 1000);
+var ĝisdatigiSekunde = setInterval(ĝisdatigiEkranon, 1000);
 
 var flagoEle = document.getElementById("flago");
 flagoEle.setAttribute("onclick", "varbi(1);");
